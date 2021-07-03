@@ -4,6 +4,7 @@ import {random} from 'lodash'
 import {Grid, withStyles} from '@material-ui/core'
 import './App.css';
 import Button from './components/Button';
+import QuoteMachine from './components/QuoteMachine';
 
 const styles = {
   container: {
@@ -60,14 +61,15 @@ class App extends React.Component {
     return (
       <Grid id="quote-box" className={this.props.classes.container} justify="center" container>
         <Grid item>
-          <span id='text'>{quote}</span>
+          <QuoteMachine selectedQuote={this.selectedQuote} clickHandler={this.nextQuoteClickHandler}/>
+          {/* <span id='text'>{quote}</span>
           <br/>
           <span id='author'>{author}</span>
           <br/>
           <Button buttonDisplayName="Next Quote" clickHandler={this.nextQuoteClickHandler} id="new-quote"/>
           <br/>
           <a id='tweet-quote' href={href_tweet}>tw</a>
-          <br/>
+          <br/> */}
         </Grid>
       </Grid>
     );
