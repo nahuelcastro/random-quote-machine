@@ -1,9 +1,7 @@
 import React from 'react';
 import {random} from 'lodash'
-// import 'typeface-roboto';
 import {Grid, withStyles} from '@material-ui/core'
-import './App.css';
-import Button from './components/Button';
+// import './App.css';
 import QuoteMachine from './components/QuoteMachine';
 
 const styles = {
@@ -60,7 +58,7 @@ class App extends React.Component {
     const href_tweet = `https://twitter.com/intent/tweet?hashtags=quotes&related=react&text=${quote} ${author}` 
     return (
       <Grid id="quote-box" className={this.props.classes.container} justify="center" container>
-        <Grid item>
+        <Grid xs={11} lg={8} item>
           <QuoteMachine selectedQuote={this.selectedQuote} clickHandler={this.nextQuoteClickHandler}/>
           {/* <span id='text'>{quote}</span>
           <br/>
