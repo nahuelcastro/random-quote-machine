@@ -1,24 +1,18 @@
 import React from 'react';
 import {random} from 'lodash'
+// import 'typeface-roboto';
+import {Grid, withStyles} from '@material-ui/core'
 import './App.css';
 import Button from './components/Button';
 
-// function App() {
+const styles = {
+  container: {
+    alignItems: 'center',
+    display: 'flex',
+    height: '100vh',
+  }
+}
 
-//     nextQuoteClickHandler(){
-//       console.log('HOLA')
-//     }
-
-//   return (
-//     <div id="quote-box" className="App">
-//       <span id='text'>This is text</span>
-//       <span id='author'>author</span>
-//       <Button buttonDisplayName="Next Quote" clickHandler={this.nextQuoteClickHandler}/>
-//       <button id='new-quote'>new</button>
-//       <a id='tweet-quote' href="#">tw</a>
-//     </div>
-//   );
-// }
 
 class App extends React.Component {
   constructor(props) {
@@ -64,17 +58,18 @@ class App extends React.Component {
     const author = this.selectedQuote ? this.selectedQuote.author: ''
     const href_tweet = `https://twitter.com/intent/tweet?hashtags=quotes&related=react&text=${quote} ${author}` 
     return (
-      <div id="quote-box" className="App">
-
-        <span id='text'>{quote}</span>
-        <br/>
-        <span id='author'>{author}</span>
-        <br/>
-        <Button buttonDisplayName="Next Quote" clickHandler={this.nextQuoteClickHandler} id="new-quote"/>
-        <br/>
-        <a id='tweet-quote' href={href_tweet}>tw</a>
-        <br/>
-      </div>
+      <Grid id="quote-box" className={this.props.classes.container} justify="center" container>
+        <Grid item>
+          <span id='text'>{quote}</span>
+          <br/>
+          <span id='author'>{author}</span>
+          <br/>
+          <Button buttonDisplayName="Next Quote" clickHandler={this.nextQuoteClickHandler} id="new-quote"/>
+          <br/>
+          <a id='tweet-quote' href={href_tweet}>tw</a>
+          <br/>
+        </Grid>
+      </Grid>
     );
   }
 
@@ -84,4 +79,4 @@ class App extends React.Component {
 
 
 
-export default App;
+export default withStyles(styles)(App);
