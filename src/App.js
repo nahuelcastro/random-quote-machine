@@ -43,6 +43,13 @@ class App extends React.Component {
     this.setState({selectedQuoteIndex: this.selectQuoteIndex()})
   }
 
+  get selectedQuote(){
+    if(!this.state.quotes.length || !Number.isInteger(this.state.selectedQuoteIndex)){
+      return;
+    }
+    return this.state.quotes[this.state.selectedQuoteIndex]
+  }
+
   selectQuoteIndex(){
     if (!this.state.quotes.length){
       return;
@@ -51,14 +58,22 @@ class App extends React.Component {
   }
 
   render(){
-    console.log(this.state.quotes)
+    console.log(this.selectedQuote)
     console.log(this.state.selectedQuoteIndex)
+    const quote = this.selectedQuote ? `"${this.selectedQuote.quote}"` : ''
+    const author = this.selectedQuote ? this.selectedQuote.author: ''
+    const href_tweet = `https://twitter.com/intent/tweet?hashtags=quotes&related=react&text=${quote} ${author}` 
     return (
       <div id="quote-box" className="App">
-        <span id='text'>{this.state.selectedQuoteIndex}</span>
-        <span id='author'>author</span>
+
+        <span id='text'>{quote}</span>
+        <br/>
+        <span id='author'>{author}</span>
+        <br/>
         <Button buttonDisplayName="Next Quote" clickHandler={this.nextQuoteClickHandler} id="new-quote"/>
-        <a id='tweet-quote' href="#">tw</a>
+        <br/>
+        <a id='tweet-quote' href={href_tweet}>tw</a>
+        <br/>
       </div>
     );
   }
